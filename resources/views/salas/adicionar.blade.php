@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Cadastro de Usuários
+                    Cadastro de Salas
                 </div>
 
                 <div class="panel-body">
@@ -20,20 +20,16 @@
                     @endif
                     
                     @if(Request::is('*/editar'))
-                      {!! Form::model($usuario, ['method' => 'PATCH' ,'url' => 'usuarios/'.$usuario->id]) !!}
+                      {!! Form::model($sala, ['method' => 'PATCH' ,'url' => 'salas/'.$sala->id]) !!}
                     @else
-                      {!! Form::open(['url' => 'usuarios/adicionar/salvar']) !!}
+                      {!! Form::open(['url' => 'salas/adicionar/salvar']) !!}
                     @endif
-                    
 
-                    {!! Form::label('name','Nome') !!}
-                    {!! Form::input('text','name', null,['class'=>'form-control','autofocus','placeholde']) !!}
+                    {!! Form::label('nome','Nome') !!}
+                    {!! Form::input('text','nome', null,['class'=>'form-control','autofocus','placeholde']) !!}
 
-                    {!! Form::label('email','Email') !!}
-                    {!! Form::input('text','email', null,['class'=>'form-control','autofocus','placeholde']) !!}
-
-                    {!! Form::label('password','Senha') !!}
-                    {!! Form::input('password','password', null,['class'=>'form-control','autofocus','placeholde']) !!}
+                    {!! Form::label('numero','Número da Sala') !!}
+                    {!! Form::input('text','numero', null,['class'=>'form-control','autofocus','placeholde']) !!}
                     <br/>
                     @if(Request::is('*/editar'))
                       {!! Form::submit('Atualizar',['class'=>'btn btn-primary pull-right']) !!}

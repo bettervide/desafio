@@ -6,28 +6,29 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Usuários
-                    <a href="{{url('usuarios/adicionar')}}" class="pull-right">Adicionar Usuário</a>
+                    Reservar Salas
+                    <a href="{{url('reservar/adicionar')}}" class="pull-right">Reservar Sala</a>
                 </div>
 
                 <div class="panel-body">
                     @if (session('mensagem_delete_sucesso'))
                         <div class="alert alert-success">{{ session('mensagem_delete_sucesso') }}</div>
                     @endif
+                    Salas Reservadas
                    <table class="table">
                     <thead>
                         <th>Nome</th>
-                        <th>Email</th>
+                        <th>Número da Sala</th>
                         <th></th>
                     </thead>
                     <tbody>
-                    @foreach($usuarios as $usuario)
+                    @foreach($salas as $sala)
                        <tr>
-                        <td>{{$usuario->name}}</td>
-                        <td>{{$usuario->email}}</td>
+                        <td>{{$sala->nome}}</td>
+                        <td>{{$sala->numero}}</td>
                         <td>
-                            <a href="/usuarios/{{$usuario->id}}/editar" class="btn btn-default btn-sm">Editar</a>
-                            {!! Form::open(['method' => 'DELETE', 'url' => '/usuarios/'.$usuario->id, 'style'=>'display: inline;']) !!}
+                            <a href="/salas/{{$sala->id}}/editar" class="btn btn-default btn-sm">Editar</a>
+                            {!! Form::open(['method' => 'DELETE', 'url' => '/salas/'.$sala->id, 'style'=>'display: inline;']) !!}
                             <button type="submit" class="btn btn-default btn-sm">Excluir</button>
                             {!! Form::close() !!}
                         </td>
