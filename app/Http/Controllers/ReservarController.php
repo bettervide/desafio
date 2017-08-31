@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use \Auth;
+use Carbon\Carbon;
+use \DateTime;
+
 
 class reservarController extends Controller
 {
@@ -33,21 +36,39 @@ class reservarController extends Controller
 
     public function salvar(Request $request)
     {
-        $reserva = DB::table('reservars')
-            ->where('dia',$request->dia)
+        $reserva0 = DB::table('reservars')
             ->where('sala',$request->sala)
             ->where('fk_user',Auth::id())            
             ->get();
 
+            var_dump($reserva0[0]->dia);
+            var_dump($request->dia);
+
+            $data = DateTime::createFromFormat('d/m/Y H:i:s', $request->dia)->format('Y-m-d H:i:s');
+            
+        $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $reserva0[0]->dia);
+        $date2 = Carbon::createFromFormat('Y-m-d H:i:s', $data);
+
+        $value = $date2->diffInSeconds($date1); // saída: 2 horas    
+        if($value > 3540){
+
+        $reserva = DB::table('reservars')
+            ->where('dia',$data)
+            ->where('sala',$request->sala)
+            ->where('fk_user',Auth::id())            
+            ->get();
+
+         
+
         if($reserva->count() == 0){
             $reserva2 = DB::table('reservars')
-            ->where('dia',$request->dia)
+            ->where('dia',$data)
             ->where('fk_user',Auth::id())            
             ->get();    
             if($reserva2->count() == 0){
                 $sala = new Reservar();
               $sala = $sala->create([
-                  'dia' => $request['dia'],
+                  'dia' => $data,
                   'sala' => $request['sala'],
                   'fk_user' => Auth::id()
               ]);
@@ -57,6 +78,9 @@ class reservarController extends Controller
             }
         } else {
           session(['mensagem_sucesso' => 'Esta sala já encontra-se reservada!']);
+        }
+        } else {
+            session(['mensagem_sucesso' => 'Esta sala já encontra-se reservada neste horário!']);
         }
         return Redirect::to('reservar/adicionar');
     }

@@ -34,6 +34,9 @@
 
                     {!! Form::label('password','Senha') !!}
                     {!! Form::input('password','password', null,['class'=>'form-control','autofocus','placeholde']) !!}
+                    
+                    {!! Form::label('check','Adicionar como admin?') !!}
+                    <input name="check" id="check" type="checkbox" value="check">
                     <br/>
                     @if(Request::is('*/editar'))
                       {!! Form::submit('Atualizar',['class'=>'btn btn-primary pull-right']) !!}

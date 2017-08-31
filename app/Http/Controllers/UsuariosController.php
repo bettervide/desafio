@@ -24,10 +24,12 @@ class UsuariosController extends Controller
 
     public function salvar(Request $request)
     {
+
         $usuario = new User();
         $usuario = $usuario->create([
             'name' => $request['name'],
             'email' => $request['email'],
+            'check' => $request['check'] == 'check' ? 1 : 0,
             'password' => bcrypt($request['password']),
         ]);
         
@@ -48,6 +50,7 @@ class UsuariosController extends Controller
         $usuario->update([
             'name' => $request['name'],
             'email' => $request['email'],
+            'check' => $request['check'] == 'check' ? 1 : 0,
             'password' => bcrypt($request['password']),
         ]);
         session(['mensagem_sucesso' => 'Usuário atualizado com sucesso!']);
