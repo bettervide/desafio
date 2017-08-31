@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Reservar extends Model
 {
     protected $fillable = [
-        'dia', 'sala'
+        'dia', 'sala', 'fk_user'
     ];
 }

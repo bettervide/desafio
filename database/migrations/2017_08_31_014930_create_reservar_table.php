@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class CreateReservarTable extends Migration
 {
     /**
@@ -17,6 +18,7 @@ class CreateReservarTable extends Migration
             $table->increments('id');
             $table->dateTime('dia');
             $table->integer('sala');
+            $table->integer('fk_user');
             $table->timestamps();
         });
     }

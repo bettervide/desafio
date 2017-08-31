@@ -29,7 +29,11 @@
                     {!! Form::input('text','dia', null,['class'=>'form-control','autofocus','placeholde']) !!}
 
                     {!! Form::label('sala','Sala:') !!}
-                    {!! Form::input('text','sala', null,['class'=>'form-control','autofocus','placeholde']) !!}
+                    <select class="form-control" name="sala">
+                    @foreach($salas as $item)
+                        <option value="{{$item->id}}">{{$item->nome}}</option>
+                    @endforeach
+                    </select>
                     <br/>
                     @if(Request::is('*/editar'))
                       {!! Form::submit('Atualizar',['class'=>'btn btn-primary pull-right']) !!}

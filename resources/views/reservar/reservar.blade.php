@@ -17,20 +17,23 @@
                     Salas Reservadas
                    <table class="table">
                     <thead>
-                        <th>Nome</th>
-                        <th>Número da Sala</th>
+                        <th>Dia</th>
+                        <th>Sala</th>
                         <th></th>
                     </thead>
                     <tbody>
-                    @foreach($salas as $sala)
+                    @foreach($reservas as $reserva)
                        <tr>
-                        <td>{{$sala->nome}}</td>
-                        <td>{{$sala->numero}}</td>
+                        <td>{{$reserva->dia}}</td>
+                        <td>{{$reserva->nome}} - {{$reserva->numero}}</td>
                         <td>
-                            <a href="/salas/{{$sala->id}}/editar" class="btn btn-default btn-sm">Editar</a>
-                            {!! Form::open(['method' => 'DELETE', 'url' => '/salas/'.$sala->id, 'style'=>'display: inline;']) !!}
-                            <button type="submit" class="btn btn-default btn-sm">Excluir</button>
+                        @if (session('id') == $reserva->fk_user)
+                            {!! Form::open(['method' => 'DELETE', 'url' => '/reservar/'.$reserva->id, 'style'=>'display: inline;']) !!}
+                            <button type="submit" class="btn btn-default btn-sm">Cancelar Reserva</button>
                             {!! Form::close() !!}
+                        @else
+                            <button type="button" class="btn btn-default btn-sm block">Reservado</button>
+                        @endif    
                         </td>
                        </tr>
                     @endforeach    
