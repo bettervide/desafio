@@ -10,18 +10,18 @@
                 </div>
 
                 <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    @if (session('mensagem_sucesso'))
-                        <div class="alert alert-success">{{ session('mensagem_sucesso') }}</div>
-                    @endif
+                    
+                    
                     
                     @if(Request::is('*/editar'))
+                      @if (session('mensagem_sucesso_atualizado'))
+                        <div class="alert alert-success">{{ session('mensagem_sucesso') }}</div>
+                      @endif
                       {!! Form::model($usuario, ['method' => 'PATCH' ,'url' => 'usuarios/'.$usuario->id]) !!}
                     @else
+                      @if (session('mensagem_sucesso_adicionado'))
+                        <div class="alert alert-success">{{ session('mensagem_sucesso') }}</div>
+                      @endif
                       {!! Form::open(['url' => 'usuarios/adicionar/salvar']) !!}
                     @endif
                     

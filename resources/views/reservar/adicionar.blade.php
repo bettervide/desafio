@@ -10,13 +10,9 @@
                 </div>
 
                 <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    @if (session('mensagem_sucesso'))
-                        <div class="alert alert-success">{{ session('mensagem_sucesso') }}</div>
+                    
+                    @if (session('mensagem_sucesso_reserva'))
+                        <div class="alert alert-success">{{ session('mensagem_sucesso_reserva') }}</div>
                     @endif
                     
                     @if(Request::is('*/editar'))
@@ -25,8 +21,8 @@
                       {!! Form::open(['url' => 'reservar/adicionar/salvar']) !!}
                     @endif
 
-                    {!! Form::label('dia','Dia:') !!}
-                    {!! Form::input('text','dia', null,['class'=>'form-control','autofocus','placeholde']) !!}
+                    {!! Form::label('dia','Dia e Hora: Ex.: 31/08/2017 15:00') !!}
+                    {!! Form::input('text','dia', null,['class'=>'form-control','autofocus','placeholder'=>'Ex.: 31/08/2017 15:00']) !!}
 
                     {!! Form::label('sala','Sala:') !!}
                     <select class="form-control" name="sala">

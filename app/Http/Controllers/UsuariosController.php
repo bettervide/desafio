@@ -33,7 +33,7 @@ class UsuariosController extends Controller
             'password' => bcrypt($request['password']),
         ]);
         
-        session(['mensagem_sucesso' => 'Usuário cadastrado com sucesso!']);
+        session(['mensagem_sucesso_cadastro' => 'Usuário cadastrado com sucesso!']);
         return Redirect::to('usuarios/adicionar');
     }
 
@@ -53,7 +53,7 @@ class UsuariosController extends Controller
             'check' => $request['check'] == 'check' ? 1 : 0,
             'password' => bcrypt($request['password']),
         ]);
-        session(['mensagem_sucesso' => 'Usuário atualizado com sucesso!']);
+        session(['mensagem_sucesso_atualizar' => 'Usuário atualizado com sucesso!']);
         return Redirect::to('usuarios/'.$usuario->id."/editar");
     }
 

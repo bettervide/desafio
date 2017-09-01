@@ -11,13 +11,13 @@
                 </div>
 
                 <div class="panel-body">
-                    @if (session('mensagem_delete_sucesso'))
-                        <div class="alert alert-success">{{ session('mensagem_delete_sucesso') }}</div>
+                    @if (session('mensagem_delete_reserva'))
+                        <div class="alert alert-success">{{ session('mensagem_delete_reserva') }}</div>
                     @endif
                     Salas Reservadas
                    <table class="table">
                     <thead>
-                        <th>Dia</th>
+                        <th>Dia / Hora</th>
                         <th>Sala</th>
                         <th></th>
                     </thead>
